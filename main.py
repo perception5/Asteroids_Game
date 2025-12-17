@@ -3,7 +3,9 @@ import constants
 import player
 import asteroid
 import asteroidfield
-from logger import log_state
+from logger import log_state, log_event
+import sys
+
 
 pygame.init()
 clock = pygame.time.Clock()
@@ -39,6 +41,12 @@ def main():
         screen.fill("black")
         
         updatable.update(dt)
+
+        for each_asteroid in asteroids:
+            if each_asteroid.collides_with(player_one):
+                log_event("player_hit")
+                print("Game over!")
+                sys.exit()
 
         for thing in drawable:
             thing.draw(screen)
