@@ -52,6 +52,13 @@ def main():
                 print("Game over!")
                 sys.exit()
 
+        for each_asteroid in asteroids:
+            for each_shot in shots:
+                if each_shot.collides_with(each_asteroid):
+                    log_event("asteroid_shot")
+                    each_shot.kill()
+                    each_asteroid.kill()
+
         for thing in drawable:
             thing.draw(screen)
 
